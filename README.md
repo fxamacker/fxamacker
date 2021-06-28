@@ -1,4 +1,4 @@
-My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor).  It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, Mozilla, Oasis Labs, and more.  
+My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor).  It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, Mozilla, Oasis Labs, and others.  
 
 I tried to balance competing factors such as speed, size, safety, usability, and maintainability.  If you use fxamacker/cbor in your project, please let me know.  I'm curious to see where and how it's used!
 
