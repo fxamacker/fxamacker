@@ -2,7 +2,7 @@ My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cb
 
 Other open source contributions include [onflow/atree](https://github.com/onflow/atree), [fxamacker/circlehash](https://github.com/fxamacker/circlehash),  sometimes [onflow/cadence](https://github.com/onflow/cadence), and others.
 
-![image](https://user-images.githubusercontent.com/57072051/137598658-b429d4e3-9826-46bc-92c7-5a5d84f4f8f3.png)
+![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
 
 [Atree](https://github.com/onflow/atree) provides scalable arrays and maps. My design contributions include novel hash collision handling that combines non-cryptographic and cryptographic hashing for faster speed, reduced storage size, and security.  It's different from published designs such as double hashing, 2-choice hashing, cuckoo hashing, hopscotch hashing, etc.
 
