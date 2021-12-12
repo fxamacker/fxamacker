@@ -10,4 +10,12 @@ Other open source contributions include [onflow/atree](https://github.com/onflow
 
 I try to balance competing factors such as speed, simplicity, security, usability, and maintainability based on each project's priorities.
 
-I've been using Go but used other languages extensively (especially C++ in closed source commercial software). I chose Go because it boosted productivity on successful choose-your-language(s) full-stack projects.  With Go, I spent more time creating software and less time debugging compared to multithreaded C++ programming. I miss generics and fast FFI to C functions but I love Go's faster builds, easier concurrency, and increased productivity with Go.  Looking forward to Go 1.18 having generics.
+I've been using Go but used other languages extensively (especially C++ in closed source commercial software). I chose Go because it boosted productivity on successful choose-your-language(s) full-stack projects.  With Go, I spent more time creating software and less time debugging compared to multithreaded C++ programming. I miss generics and fast FFI to C functions but I love Go's faster builds, easier concurrency, and increased productivity with Go.  Looking forward to Go 1.18+ having generics.
+
+### Professional Background
+
+Prior to joining Dapper Labs on May 4, 2021, I was contracted for ~5 weeks by Dapper Labs to help optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  My prior experience includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
+
+- My smallest consulting client - a startup.  I assisted with prototyping which helped secure their next round of funding.
+- My largest consulting client - an S&P 500 company with almost 50,000 employees.  I evaluated (as part of a large team) various technologies to be selected for their new global stack for deployment to over 100 countries.
+- My largest software licensing+subscription+support client - a company with over 3,000 employees in the US that deployed my distributed data security software to all their US-based offices and factories.  I was only one of two people that conceived, designed, implemented, tested, and maintained the system.  Yet our system beat enterprise solutions from well-funded large competitors year after year during evaluations which included testing employee-attempted data theft. It was not approved for export outside US and Canada.
