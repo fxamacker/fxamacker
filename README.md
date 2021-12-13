@@ -14,8 +14,12 @@ I've been using Go but used other languages extensively (especially C++ in close
 
 ### Professional Background
 
-Prior to joining Dapper Labs on May 4, 2021, I was contracted for ~5 weeks by Dapper Labs to help optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  My prior experience includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
+I joined Dapper Labs on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.
+
+My prior experience before Dapper Labs includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
 
 - My smallest consulting client - a startup.  I assisted with prototyping which helped secure their next round of funding.
 - My largest consulting client - an S&P 500 company with almost 50,000 employees.  I evaluated (as part of a large team) various technologies to be selected for their new global stack for deployment to over 100 countries.
-- My largest software licensing+subscription+support client - a company with over 3,000 employees in the US that deployed my distributed data security software to all their US-based offices and factories.  I was only one of two people that conceived, designed, implemented, tested, and maintained the system.  Yet our system beat enterprise solutions from well-funded large competitors year after year during evaluations which included testing employee-attempted data theft. It was not approved for export outside US and Canada.
+- My largest software licensing+subscription+support client - a company with over 3,000 employees in the US that deployed my data security software to all their US-based offices and factories.  The tamper-resistant system used 4 types of servers to distribute and enforce security policies across multiple timezones for various client software.  The system was designed to repair and update itself with bugfixes without introducing downtime.  I was only one of two people that conceived, designed, implemented, tested, and maintained the system.  Our system beat enterprise solutions from well-funded large competitors year after year during customer evaluations which included testing employee-attempted data theft.  It was not approved for export or use outside US and Canada.
+
+Developing commercial software provided the advantage of choosing the most appropriate language and framework for each part of the system because the customers didn't know what programming languages, tools, or frameworks were used.
