@@ -4,17 +4,17 @@ Other open source contributions include [onflow/atree](https://github.com/onflow
 
 ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
 
-[Atree](https://github.com/onflow/atree) provides scalable arrays and maps. My design contributions include novel hash collision handling that combines non-cryptographic and cryptographic hashing for faster speed, reduced storage size, and security.  It's different from published designs such as double hashing, 2-choice hashing, cuckoo hashing, hopscotch hashing, etc.  Atree is used by the [Flow Blockchain](https://www.onflow.org/) in its rewritten storage layer of [Cadence](https://github.com/onflow/cadence) (a programming language for smart contract development).
+[Atree](https://github.com/onflow/atree) provides scalable arrays and maps. My design contributions include novel hash collision handling that combines non-cryptographic and cryptographic hashing for faster speed, reduced storage size, and security.  It's different from published designs such as double hashing, 2-choice hashing, cuckoo hashing, etc.  Atree is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).  Atree wouldn't exist without Dieter Shirley setting goals and inspiring us, Ramtin M. Seraj leading the R&D to make it possible, and Bastian Müller improving Atree while leading the integration into Cadence. Special thanks to Supun Setunga for leading the data migration work and more.
 
-[CircleHash](https://github.com/fxamacker/circlehash) is a family of fast non-cryptographic hash functions I created for speed and ease of audit.  CircleHash64 and CircleHash64fx don't exceed 0.8% worst-bit error in [Strict Avalanche Criterion](https://en.wikipedia.org/wiki/Avalanche_effect#Strict_avalanche_criterion) for 0-128 byte inputs (using demerphq/smhasher modified to test more sizes).  CircleHash64 is used together with BLAKE3 in onflow/atree.
+[CircleHash](https://github.com/fxamacker/circlehash) is a family of fast non-cryptographic hash functions I created for speed, ease of audit, and maintainability.  CircleHash64 and CircleHash64fx don't exceed 0.8% worst-bit error in [Strict Avalanche Criterion](https://en.wikipedia.org/wiki/Avalanche_effect#Strict_avalanche_criterion) for 0-128 byte inputs (using demerphq/smhasher modified to test more sizes).  CircleHash64 is used together with BLAKE3 in [onflow/atree](https://github.com/onflow/atree).  Atree and CircleHash were successfully deployed to Flow mainnet on Dec 8, 2021.
 
-I try to balance competing factors such as speed, simplicity, security, usability, and maintainability based on each project's priorities.
+I try to balance competing factors such as speed, security, usability, and maintainability based on each project's priorities.
 
 I've been using Go but used other languages extensively (especially C++ in closed source commercial software). I chose Go because it boosted productivity on successful choose-your-language(s) full-stack projects.  With Go, I spent more time creating software and less time debugging compared to multithreaded C++ programming. I miss generics and fast FFI to C functions but I love Go's faster builds, easier concurrency, and increased productivity with Go.  Looking forward to Go 1.18+ having generics.
 
 ### Professional Background
 
-I joined Dapper Labs on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.
+I joined Dapper Labs on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  [Issue 738](https://github.com/onflow/cadence/issues/738) was created on my first day as a contractor and the Cadence team was very welcoming and highly productive to work with.
 
 My prior experience before Dapper Labs includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
 
