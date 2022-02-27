@@ -1,12 +1,12 @@
 My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, Mozilla, Oasis Labs, Netherlands (govt), Taurus SA, and others.
 
-Most of my source code is closed source (often multithreaded C++). I'm currently working on open source Go projects like [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/cadence](https://github.com/onflow/cadence), and [onflow/flow-go](https://github.com/onflow/flow-go).
+Most of my source code is closed source (in many languages but mostly multithreaded C++). I'm currently working on open source Go projects like [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/cadence](https://github.com/onflow/cadence), and [onflow/flow-go](https://github.com/onflow/flow-go).
 
 ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
 
 ## Innovation
 
-__Novel hash collision handling__: I designed and implemented a novel hash collision handling method for [Atree](github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  First, it uses a fast noncryptographic 64-bit hash.  And if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
+__Novel hash collision handling__: I designed and implemented a novel hash collision handling method for [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  First, it uses a fast noncryptographic 64-bit hash.  And if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
 
 This hash collision handling method is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
 
@@ -75,7 +75,7 @@ fxamacker/cbor CBOR safety settings include: MaxNestedLevels, MaxArrayElements, 
 
 I try to balance competing factors such as speed, security, usability, and maintainability based on each project's priorities.
 
-I joined Dapper Labs full-time on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  On my first day as a contractor, I created [issue 738](https://github.com/onflow/cadence/issues/738) and the Cadence team was incredibly welcoming and highly productive to work with.  I opened 100+ issues and 100+ PRs in 2021 at work.
+I joined Dapper Labs full-time on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  On my first day as a contractor, I created [issue 738](https://github.com/onflow/cadence/issues/738) and the Cadence team was incredibly welcoming and highly productive to work with.  I opened 100+ issues and 100+ PRs at work in 2021.
 
 My prior experience before Dapper Labs includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
 
