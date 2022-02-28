@@ -56,7 +56,7 @@ CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger
 
 ## Serialization and Secure Coding
 
-__[fxamacker/cbor](github.com/fxamacker/cbor)__ is secure.  It rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data. It has extensive tests, coverage-guided fuzzing, data validation, and avoids Go's `unsafe` package.
+__[fxamacker/cbor](https://github.com/fxamacker/cbor)__ is secure.  It rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data. It has extensive tests, coverage-guided fuzzing, data validation, and avoids Go's `unsafe` package.
 
 Decoding 9 or 10 bytes of malformed CBOR data shouldn't exhaust memory. For example,  
 `[]byte{0x9B, 0x00, 0x00, 0x42, 0xFA, 0x42, 0xFA, 0x42, 0xFA, 0x42}`
