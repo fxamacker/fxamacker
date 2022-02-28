@@ -48,11 +48,11 @@ __CircleHash64__: After evaluating state-of-the-art fast hashes (for short input
 | 192 bytes | 14.2 GB/s | 9.86 GB/s | 9.71 GB/s | 2.17 GB/s |
 | 256 bytes | 15.0 GB/s | 8.19 GB/s | 10.2 GB/s | 2.22 GB/s |
 
-- Using Go 1.17.7, darwin_amd64, i7-1068N7 CPU
+- Using Go 1.17.7, darwin_amd64, i7-1068NG7 CPU
 - Results from `go test -bench=. -count=20` and `benchstat`
 - Fastest XXH64 in Go+Assembly doesn't support seed
 
-CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger.
+CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger.  Other CircleHash variants are faster for larger input sizes and a bit slower for short inputs (not yet published).
 
 ## Serialization and Secure Coding
 
