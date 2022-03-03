@@ -54,7 +54,7 @@ __[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created C
 
 CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger.  Other CircleHash variants are faster for larger input sizes and a bit slower for short inputs (not yet published).
 
-## Implementing IETF Internet Standards (RFC 8949 & RFC 7049)
+## Implement IETF Internet Standards (RFC 8949 & RFC 7049)
 
 __[fxamacker/cbor](https://github.com/fxamacker/cbor)__: I designed and implemented a secure CBOR codec after reading RFC 7049.  During implementation, I helped review [the draft](https://github.com/cbor-wg/CBORbis) leading to [RFC 8949](https://datatracker.ietf.org/doc/html/rfc8949).  My CBOR codec rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data.
 
