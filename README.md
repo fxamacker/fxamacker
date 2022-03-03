@@ -54,9 +54,9 @@ __[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created C
 
 CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger.  Other CircleHash variants are faster for larger input sizes and a bit slower for short inputs (not yet published).
 
-## Serialization and Secure Coding
+## Implementing IETF Internet Standards (RFC 8949 & RFC 7049)
 
-__[fxamacker/cbor](https://github.com/fxamacker/cbor)__: I designed and implemented a secure CBOR codec after reading RFC 7049.  During implementation, I helped review the draft leading to RFC 8949.  My CBOR codec rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data. It has extensive tests, coverage-guided fuzzing, data validation, and avoids Go's `unsafe` package.
+__[fxamacker/cbor](https://github.com/fxamacker/cbor)__: I designed and implemented a secure CBOR codec after reading RFC 7049.  During implementation, I helped review [the draft](https://github.com/cbor-wg/CBORbis) leading to [RFC 8949](https://datatracker.ietf.org/doc/html/rfc8949).  My RFC-compliant CBOR codec rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data. It has extensive tests, coverage-guided fuzzing, data validation, and avoids Go's `unsafe` package.
 
 Decoding 9 or 10 bytes of malformed CBOR data shouldn't exhaust memory. For example,  
 `[]byte{0x9B, 0x00, 0x00, 0x42, 0xFA, 0x42, 0xFA, 0x42, 0xFA, 0x42}`
