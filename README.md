@@ -6,7 +6,7 @@ Most of my source code is closed source (in many languages but mostly multithrea
 
 ## Innovation
 
-__Novel hash collision handling__: I designed and implemented a novel hash collision handling method for [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  First, it uses a fast noncryptographic 64-bit hash.  And if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
+__[onflow/atree](https://github.com/onflow/atree)__: I designed and implemented a novel hash collision handling method as part of [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
 
 This hash collision handling method is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
 
@@ -14,18 +14,18 @@ Atree is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Block
 
 ## Optimization
 
-__Optimizing existing code:__  After reading the code, I [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) for [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
+__[onflow/flow-go](https://github.com/onflow/flow-go):__  I read the code and [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) for [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
 
 I created [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
 - __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency yet)
 - __MEMORY__: -431 GB alloc/op (-54.35%) and -7.6 billion allocs/op (-63.67%)
 - __STORAGE__: -6.9 GB file size (without using compression yet)
 
-This optimization avoids incurring any performance tradeoffs (e.g. adding new process+IPC).  Additional optimizations (add concurrency, add compression, etc.) were moved to separate issue/PR so this can be reviewed and merged without introducing delays.
+This optimization avoids incurring any performance tradeoffs (e.g. adding new process+IPC).  Additional optimizations (add concurrency, add compression, etc.) were moved to separate issue/PR and I switched my focus to related issues like [#1747](https://github.com/onflow/flow-go/issues/1747).
 
 ## Evaluations and Improvements
 
-__CircleHash64__: After evaluating state-of-the-art fast hashes (for short input sizes typically <128 bytes), I created CircleHash64 based on Google Abseil C++ internal hash. I tried to balance speed, digest quality, and ease-of-audit/maintainability.
+__[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created CircleHash64 after evaluating fast hashes (for short input sizes typically <128 bytes).  CircleHash64 based on Google Abseil C++ internal hash.  I tried to make CircleHash64 well-rounded, by balancing speed, digest quality, and maintainability.
 
 #### CircleHash64 has good results in [Strict Avalanche Criterion (SAC)](https://en.wikipedia.org/wiki/Avalanche_effect#Strict_avalanche_criterion).
 
@@ -56,7 +56,7 @@ CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger
 
 ## Serialization and Secure Coding
 
-__[fxamacker/cbor](https://github.com/fxamacker/cbor)__ is secure.  It rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data. It has extensive tests, coverage-guided fuzzing, data validation, and avoids Go's `unsafe` package.
+__[fxamacker/cbor](https://github.com/fxamacker/cbor)__: I designed and implemented a secure CBOR codec after reading RFC 7049.  During implementation, I helped review the draft leading to RFC 8949.  My CBOR codec rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data. It has extensive tests, coverage-guided fuzzing, data validation, and avoids Go's `unsafe` package.
 
 Decoding 9 or 10 bytes of malformed CBOR data shouldn't exhaust memory. For example,  
 `[]byte{0x9B, 0x00, 0x00, 0x42, 0xFA, 0x42, 0xFA, 0x42, 0xFA, 0x42}`
@@ -75,7 +75,7 @@ fxamacker/cbor CBOR safety settings include: MaxNestedLevels, MaxArrayElements, 
 
 I try to balance competing factors such as speed, security, usability, and maintainability based on each project's priorities.
 
-I joined Dapper Labs full-time on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  On my first day as a contractor, I created [issue 738](https://github.com/onflow/cadence/issues/738) and the Cadence team was incredibly welcoming and highly productive to work with.  I opened 100+ issues and 100+ PRs at work in 2021.
+I joined Dapper Labs full-time on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  On my first day as a contractor, I created [issue 738](https://github.com/onflow/cadence/issues/738) and the Cadence team was very welcoming and productive to work with.  I subsequently opened 100+ issues and 100+ PRs at work in 2021.
 
 My prior experience before Dapper Labs includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
 
