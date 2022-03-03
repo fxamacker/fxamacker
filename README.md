@@ -25,7 +25,7 @@ This optimization avoids incurring any performance tradeoffs (e.g. adding new pr
 
 ## Evaluations and Improvements
 
-__[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created CircleHash64 on weekends after evaluating state-of-the-art fast hashes during the day. At the time, I needed a fast hash for short input sizes typically <128 bytes but didn't like existing hashes.  I didn't want to reinvent the wheel so I based it on Google Abseil C++ internal hash.  CircleHash64 is well-rounded: it balances speed, digest quality, and maintainability.
+__[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created CircleHash64 on weekends after evaluating state-of-the-art fast hashes for work. At the time, I needed a fast hash for short input sizes typically <128 bytes but didn't like existing hashes.  I didn't want to reinvent the wheel so I based it on Google Abseil C++ internal hash.  CircleHash64 is well-rounded: it balances speed, digest quality, and maintainability.
 
 #### CircleHash64 has good results in [Strict Avalanche Criterion (SAC)](https://en.wikipedia.org/wiki/Avalanche_effect#Strict_avalanche_criterion).
 
