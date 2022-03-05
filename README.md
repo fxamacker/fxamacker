@@ -14,9 +14,9 @@ Atree is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Block
 
 ## Optimization
 
-__[onflow/flow-go](https://github.com/onflow/flow-go):__  I read the code and [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) for [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
+__[onflow/flow-go](https://github.com/onflow/flow-go):__  I [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) after reading source code for [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
 
-I created [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
+And created [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
 - __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency yet)
 - __MEMORY__: -431 GB alloc/op (-54.35%) and -7.6 billion allocs/op (-63.67%)
 - __STORAGE__: -6.9 GB file size (without using compression yet)
