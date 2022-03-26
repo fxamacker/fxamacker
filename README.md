@@ -4,7 +4,7 @@ Most of my source code is closed source (in many languages but mostly multithrea
 
 ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
 
-## Innovation
+## Design
 
 __[onflow/atree](https://github.com/onflow/atree)__: I designed and implemented a novel hash collision handling method as part of [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
 
