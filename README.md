@@ -75,7 +75,7 @@ fxamacker/cbor CBOR safety settings include: MaxNestedLevels, MaxArrayElements, 
 
 I try to balance competing factors such as speed, security, usability, and maintainability based on each project's priorities.
 
-I joined Dapper Labs full-time on May 4, 2021. Prior to that, I worked as an independent contractor for ~5 weeks to help Dapper Labs optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  On my first day as a contractor, I created [issue 738](https://github.com/onflow/cadence/issues/738) and the Cadence team was very welcoming and productive to work with.  I subsequently opened 100+ issues and 100+ PRs at work in 2021.
+Most recently, I accepted an offer I received on April 13, 2021 from Dapper Labs. I had been working for them as an independent contractor for about two weeks to help optimize Cadence storage layer and to create a streaming mode branch of fxamacker/cbor.  On my first day as a contractor, I created [issue 738](https://github.com/onflow/cadence/issues/738) and the Cadence team was very welcoming and productive to work with.  I subsequently opened 100+ issues and 100+ PRs at work in 2021.
 
 My prior experience before Dapper Labs includes co-founding & bootstrapping enterprise software company, and working as an IT consultant.
 
