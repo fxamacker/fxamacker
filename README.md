@@ -1,12 +1,12 @@
-My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, French National Cybersecurity Agency (govt), Mozilla, Oasis Labs, Netherlands (govt), Taurus SA, Tailscale, and others.
+My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, Mozilla, National Cybersecurity Agency of France (govt), Oasis Labs, Netherlands (govt), Taurus SA, Tailscale, and others.
 
-In May 2022, Microsoft Corporation had NCC Group produce a [security assessment (PDF)](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) that included parts of fxamacker/cbor in its scope.
+Microsoft Corporation had NCC Group produce a [security assessment (PDF)](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) which includes portions of [fxamacker/cbor](https://github.com/fxamacker/cbor) in its scope.
 
 Most of my source code is closed source (in many languages but mostly multithreaded C++). I'm currently working on open source Go projects like [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/cadence](https://github.com/onflow/cadence), and [onflow/flow-go](https://github.com/onflow/flow-go).
 
 ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
 
-## Design
+## Design & Implementation
 
 __[onflow/atree](https://github.com/onflow/atree)__: I designed and implemented a novel hash collision handling method as part of [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
 
@@ -16,14 +16,16 @@ Atree is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Block
 
 ## Optimization
 
-__[onflow/flow-go](https://github.com/onflow/flow-go):__  I [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) after reading source code for [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
+__[onflow/flow-go](https://github.com/onflow/flow-go):__  I [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) after reading source code related to [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
 
-And created [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
-- __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency yet)
+My proposed optimizations were done in [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
+- __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency) which led to a 47x speedup in checkpointing.
 - __MEMORY__: -431 GB alloc/op (-54.35%) and -7.6 billion allocs/op (-63.67%)
 - __STORAGE__: -6.9 GB file size (without using compression yet)
 
-This optimization avoids incurring any performance tradeoffs (e.g. adding new process+IPC).  Additional optimizations (add concurrency, add compression, etc.) were moved to separate issue/PR and I switched my focus to related issues like [#1747](https://github.com/onflow/flow-go/issues/1747).
+It's my favorite optimization because it improved speed, allocs/op, alloc/op, and file size without adding concurrency or tradeoffs (e.g. new process+IPC).  About six months later, file size grew from 53GB to 126GB which would've made the system unstable without this optimization because checkpointing would've taken over 20 hours when it needs to be done every few hours due to increased transactions.
+
+Additional optimizations (add concurrency, add compression, etc.) were moved to separate issue/PR and I switched my focus to related issues like [#1747](https://github.com/onflow/flow-go/issues/1747).
 
 ## Evaluations and Improvements
 
