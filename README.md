@@ -1,4 +1,6 @@
-My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, Mozilla, Oasis Labs, Netherlands (govt), Taurus SA, and others.
+My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, French National Cybersecurity Agency (govt), Mozilla, Oasis Labs, Netherlands (govt), Taurus SA, Tailscale, and others.
+
+In May 2022, Microsoft Corporation had NCC Group produce a [security assessment (PDF)](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) that included parts of fxamacker/cbor in its scope.
 
 Most of my source code is closed source (in many languages but mostly multithreaded C++). I'm currently working on open source Go projects like [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/cadence](https://github.com/onflow/cadence), and [onflow/flow-go](https://github.com/onflow/flow-go).
 
