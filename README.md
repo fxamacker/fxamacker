@@ -12,18 +12,22 @@ This hash collision handling method is different from published methods such as 
 
 Atree is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).  Atree wouldn't exist without Dieter Shirley setting goals and inspiring us, Ramtin M. Seraj leading the R&D to make it possible, and Bastian Müller improving Atree while leading the integration into Cadence. Special thanks to Supun Setunga for leading the very complex data migration work and more.
 
-## Optimization
+## Optimizations
 
-__[onflow/flow-go](https://github.com/onflow/flow-go):__  I [proposed optimizations](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) after reading source code related to [issue #1750](https://github.com/onflow/flow-go/issues/1750) opened by Ramtin M. Seraj.
+My favorite optimization improved speed, allocs/op, alloc/op, and file size without adding concurrency or negative tradeoffs. 
 
-My proposed optimizations were done in [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
-- __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency) which led to a 47x speedup in checkpointing.
+__[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed them](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
+
+[PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
+- __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency) which led to a 47x speedup in checkpointing (11.7 hours to 15 mins).
 - __MEMORY__: -431 GB alloc/op (-54.35%) and -7.6 billion allocs/op (-63.67%)
 - __STORAGE__: -6.9 GB file size (without using compression yet)
 
-It's my favorite optimization because it improved speed, allocs/op, alloc/op, and file size without adding concurrency or tradeoffs (e.g. new process+IPC).  About six months later, file size grew from 53GB to 126GB which would've made the system unstable without this optimization because checkpointing would've taken over 20 hours when it needs to be done every few hours due to increased transactions.
+After [PR #1944](https://github.com/onflow/flow-go/pull/1944) reduced Mtrie flattening and serialization phase to under 5 minutes (which sometimes took 17 hours on mainnet16), creating a separate MTrie state used most of the remaining duration and memory.
 
 Additional optimizations (add concurrency, add compression, etc.) were moved to separate issue/PR and I switched my focus to related issues like [#1747](https://github.com/onflow/flow-go/issues/1747).
+
+UPDATE: About six months later, file size grew from 53GB to 126GB and checkpointing frequency increased to every few hours (instead of about once daily) due to increased transactions and data size.  Without [PR #1944](https://github.com/onflow/flow-go/pull/1944), checkpointing would be taking over 20-30 hours each time, require more operational RAM, and slowdown the system with increased gc pressure.  More info: [issue #2286](https://github.com/onflow/flow-go/issues/2286) and [PR #2792](https://github.com/onflow/flow-go/pull/2792).
 
 ## Evaluations and Improvements
 
