@@ -2,7 +2,7 @@ On GitHub, I maintain or contribute to projects such as [fxamacker/cbor](https:/
 
 My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). `fxamacker/cbor` is used in projects by Arm Ltd., Cisco, Dapper Labs, EdgeX&nbsp;Foundry, Fraunhofer&#8209;AISEC, Linux&nbsp;Foundation, Microsoft, Mozilla, Tailscale, Teleport, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
 
-`fxamacker/cbor` passed multiple confidential security assessments in 2022.  A [nonconfidential&nbsp;security&nbsp;assessment](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) (prepared by NCC&nbsp;Group for Microsoft&nbsp;Corporation) includes a subset of `fxamacker/cbor` v2.4.0 without finding any vulnerabilities.
+`fxamacker/cbor` passed multiple confidential security assessments in 2022.  A [nonconfidential security assessment](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) (prepared by NCC&nbsp;Group for Microsoft&nbsp;Corporation) includes a subset of `fxamacker/cbor` v2.4.0 without finding any vulnerabilities.
 
 Most of the code I wrote has been proprietary and closed source (in many languages but mostly multithreaded C++).  
 
@@ -12,17 +12,19 @@ I'm currently enjoying open source projects and the amazing simplicity of Go.  S
 
 ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
 
-__[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arrays and maps.  It segments, encodes, and stores data into chunks of relatively fixed size.  It enables blockchains to only hash and transmit modified chunks instead of the entire array, map, or large element.
+__[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arrays and maps.  It is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).
 
-I designed and implemented a novel hash collision handling method as part of [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
+Atree segments, encodes, and stores data into chunks of relatively small size.  This enables blockchains to only hash and transmit modified chunks (aka payloads) instead of the entire array, map, or large element.
 
-This hash collision handling method is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
+Among other aspects, I designed and implemented a novel hash collision handling method.  It is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
 
-Atree is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).  Atree wouldn't exist without Dieter Shirley setting goals and inspiring us, Ramtin M. Seraj leading the R&D to make it possible, and Bastian Müller improving Atree while leading the integration into Cadence. Special thanks to Supun Setunga for leading the very complex data migration work and more.
+This new hash collision handling method balances speed, security, storage size, etc.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64f](https://github.com/fxamacker/circlehash) and BLAKE3.
+
+Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities clear and inspiring us, Ramtin M. Seraj leading the R&D and empowering us to innovate, and Bastian Müller improving Atree while leading the integration into Cadence. Many thanks to Supun Setunga for the very complex data migration work and more!
 
 ## Optimizations
 
-My favorite optimization improved speed, allocs/op, alloc/op, and file size without adding concurrency or negative tradeoffs. 
+When feasible, my optimizations improve speed, memory, storage, and network use without negative tradeoffs.
 
 __[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed them](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
 
