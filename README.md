@@ -1,12 +1,20 @@
-My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). It's a [CBOR codec](https://github.com/fxamacker/cbor#cbor-codec-in-go) used by Arm Ltd., Berlin Institute of Health at Charité, Chainlink, ConsenSys, Dapper Labs, Duo Labs (cisco), EdgeX Foundry, Fortanix, National Cybersecurity Agency of France (govt), Oasis Labs, Netherlands (govt), Taurus SA, Tailscale, and others.  Microsoft Corporation had NCC Group produce a [security assessment (PDF)](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) which includes portions of [fxamacker/cbor](https://github.com/fxamacker/cbor) in its scope.
+On GitHub, I maintain or contribute to projects such as [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/ccf](https://github.com/onflow/ccf), [onflow/cadence](https://github.com/onflow/cadence), [onflow/flow-go](https://github.com/onflow/flow-go), etc.
 
-Most of my source code is closed source (in many languages but mostly multithreaded C++). I'm currently working on open source Go projects like [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/cadence](https://github.com/onflow/cadence), and [onflow/flow-go](https://github.com/onflow/flow-go).
+My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cbor). `fxamacker/cbor` is used in projects by Arm Ltd., Cisco, Dapper Labs, EdgeX&nbsp;Foundry, Fraunhofer&#8209;AISEC, Linux&nbsp;Foundation, Microsoft, Mozilla, Tailscale, Teleport, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
 
-![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
+`fxamacker/cbor` passed multiple confidential security assessments in 2022.  A [nonconfidential&nbsp;security&nbsp;assessment](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) (prepared by NCC&nbsp;Group for Microsoft&nbsp;Corporation) includes a subset of `fxamacker/cbor` v2.4.0 without finding any vulnerabilities.
+
+Most of the code I wrote has been proprietary and closed source (in many languages but mostly multithreaded C++).  
+
+I'm currently enjoying open source projects and the amazing simplicity of Go.  Some of my open source work is described here.
 
 ## Design & Implementation
 
-__[onflow/atree](https://github.com/onflow/atree)__: I designed and implemented a novel hash collision handling method as part of [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
+![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
+
+__[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arrays and maps.  It segments, encodes, and stores data into chunks of relatively fixed size.  It enables blockchains to only hash and transmit modified chunks instead of the entire array, map, or large element.
+
+I designed and implemented a novel hash collision handling method as part of [Atree](https://github.com/onflow/atree) (onflow/atree).  I tried to balance speed, security, and storage size.  It uses a fast noncryptographic 64-bit hash and if there is a hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments).  By default, it uses [CircleHash64](https://github.com/fxamacker/circlehash) and BLAKE3.
 
 This hash collision handling method is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
 
