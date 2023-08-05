@@ -4,9 +4,9 @@ My first open source project is [fxamacker/cbor](https://github.com/fxamacker/cb
 
 `fxamacker/cbor` passed multiple confidential security assessments in 2022.  A [nonconfidential security assessment](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) (prepared by NCC&nbsp;Group for Microsoft&nbsp;Corporation) includes a subset of `fxamacker/cbor` v2.4.0 without finding any vulnerabilities.
 
-Most of the code I wrote has been proprietary and closed source (in many languages but mostly multithreaded C++).  
+Most of the code I wrote is closed source (in many languages but mostly multithreaded C++).  I'm currently enjoying open source projects and the amazing simplicity of Go.
 
-I'm currently enjoying open source projects and the amazing simplicity of Go.  Some of my open source work is described here.
+Some of my open source work is described here.
 
 ## Design & Implementation
 
