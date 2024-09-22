@@ -1,4 +1,4 @@
-On GitHub, I maintain or contribute to projects such as [fxamacker/cbor](https://github.com/fxamacker/cbor), [fxamacker/circlehash](https://github.com/fxamacker/circlehash), [onflow/atree](https://github.com/onflow/atree), [onflow/ccf](https://github.com/onflow/ccf), [onflow/cadence](https://github.com/onflow/cadence), [onflow/flow-go](https://github.com/onflow/flow-go), etc.
+On GitHub, I maintain or contribute to projects such as [fxamacker/cbor](https://github.com/fxamacker/cbor), [onflow/atree](https://github.com/onflow/atree), [onflow/ccf](https://github.com/onflow/ccf), [onflow/cadence](https://github.com/onflow/cadence), [onflow/flow-go](https://github.com/onflow/flow-go), etc.
 
 My first open source project was [fxamacker/cbor](https://github.com/fxamacker/cbor). It is used in projects by Arm Ltd., Cisco, Dapper Labs, EdgeX&nbsp;Foundry, Fraunhofer&#8209;AISEC, Linux&nbsp;Foundation, Microsoft, Mozilla, Tailscale, Teleport, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
 
@@ -25,6 +25,8 @@ Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities
 ## Optimizations
 
 When feasible, my optimizations improve speed, memory, storage, and network use without negative tradeoffs.
+
+__[onflow/atree](https://github.com/onflow/atree):__  Designed and implemented [Atree Inlining & Deduplication](https://github.com/onflow/atree/releases/tag/v0.8.0) which was deployed on Sept. 4, 2024. It eliminated over 1 billion mtrie nodes and over 500 million payloads to improve memory, storage, and speed on same hardware.
 
 __[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed them](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
 
