@@ -1,6 +1,6 @@
 On GitHub, I maintain or contribute to projects such as [fxamacker/cbor](https://github.com/fxamacker/cbor), [onflow/atree](https://github.com/onflow/atree), [onflow/ccf](https://github.com/onflow/ccf), [onflow/cadence](https://github.com/onflow/cadence), [onflow/flow-go](https://github.com/onflow/flow-go), etc.
 
-My first open source project was [fxamacker/cbor](https://github.com/fxamacker/cbor). It is used in projects by Arm Ltd., Cisco, Dapper Labs, EdgeX&nbsp;Foundry, Fraunhofer&#8209;AISEC, Linux&nbsp;Foundation, Microsoft, Mozilla, Tailscale, Teleport, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
+My first open source project was [fxamacker/cbor](https://github.com/fxamacker/cbor). It is used in projects by Arm Ltd., Cisco, Flow&nbsp;Foundation, EdgeX&nbsp;Foundry, Fraunhofer&#8209;AISEC, Kubernetes, Linux&nbsp;Foundation, Microsoft, Mozilla, Tailscale, Teleport, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
 
 `fxamacker/cbor` passed multiple confidential security assessments in 2022.  A [nonconfidential security assessment](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) (prepared by NCC&nbsp;Group for Microsoft&nbsp;Corporation) includes a subset of `fxamacker/cbor` v2.4.0 without finding any vulnerabilities.
 
