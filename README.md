@@ -24,9 +24,11 @@ Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities
 
 ## Optimizations
 
-When feasible, my optimizations improve speed, memory, storage, and network use without negative tradeoffs.
+When feasible, my optimizations simultaneously improve speed, memory, storage, and network use without negative tradeoffs.
 
-__[onflow/atree](https://github.com/onflow/atree):__  Designed and implemented [Atree Inlining & Deduplication](https://github.com/onflow/atree/releases/tag/v0.8.0) which was deployed on Sept. 4, 2024. It eliminated over 1 billion mtrie nodes and over 500 million payloads to improve memory, storage, and speed on same hardware.
+__[onflow/atree](https://github.com/onflow/atree):__  Designed and implemented [Atree Inlining & Deduplication](https://github.com/onflow/atree/releases/tag/v0.8.0) which was deployed on Sept. 4, 2024. It eliminated over 1 billion mtrie nodes (-61%) and inlined over 500 million payloads to improve memory, storage, and speed on same hardware.
+
+- For example, it reduced peak RAM use by hundreds of GB on each Flow Execution Node, improved Flow transaction speed by ~7%, and also sped up other servers: "btw amazing work this atree inlining, my tinyAN bootstrap time improved like 5x".
 
 __[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed them](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
 
