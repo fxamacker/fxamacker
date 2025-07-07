@@ -10,7 +10,11 @@ Some of my open source work is described here.
 
 ## Design & Implementation
 
-![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png)
+<!-- ![fxamacker-onflow-atree-contributions](https://github.com/user-attachments/assets/81e44838-e1ab-4282-9c88-762055f412c5) -->
+
+<img src="https://github.com/user-attachments/assets/81e44838-e1ab-4282-9c88-762055f412c5" width="720">
+
+<!-- ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png) -->
 
 __[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arrays and maps.  It is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).
 
