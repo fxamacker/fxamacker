@@ -21,7 +21,15 @@ Atree segments, encodes, and stores data into chunks of relatively small size.  
 
 Among other aspects, I designed and implemented a novel hash collision handling method.  It is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
 
-This new hash collision handling method balances speed, security, storage size, etc.  It uses a fast noncryptographic 64-bit hash and if there is a 64-bit hash collision, it uses deferred and segmented 256-bit cryptographic digest (in 64-bit segments to save space).  If there is a collision on the entire combined hash digest, the collision is handled gracefully (not catastrophic).  By default, it uses [CircleHash64f](https://github.com/fxamacker/circlehash) and BLAKE3 for a max combined digest size limit of 320 bits.  Larger digest sizes are possible by replacing BLAKE3 with SHA3-512, etc. for a max digest size limit of 576 bits.  If the max digest size limit is too large, it can be truncated by increments of 64-bits until desired tradeoffs (e.g., collision resistance) are reached.  By design, the cryptographic hash is only computed if there is a collision on the seeded 64-bit fast hash and it is only computed once.
+The novel hash collision handling method balances speed, security, storage size, etc.  It uses a seeded 64-bit fast hash and if there is collision on the fast hash, it uses a cryptographic digest in 64-bit segments to save space. The combined digest size can be up to 576 bits (when configured to segment entire 512-bit digest).
+
+The cryptographic hash is only computed if there is a collision on the seeded 64-bit fast hash and it is only computed once even for the worst case scenario.
+
+Worst case scenario of hash collisions on the entire combined digest are handled gracefully (not catastrophic).  This allows us to handle partial collisions more efficiently by choosing a faster 256-bit cryptographic hash instead of using a significantly slower 512-bit cryptographic hash.
+
+By default, Atree uses [CircleHash64f](https://github.com/fxamacker/circlehash) and BLAKE3 for a max combined digest size limit of 320 bits.  Larger digest sizes are possible by using SHA3-512, etc. instead of BLAKE3.
+
+If the max combined digest size limit is larger than desired, it can be truncated by increments of 64-bits until desired tradeoffs are reached.  However, I prefer not to truncate 256-bit cryptographic digests (out of habit unrelated to this) and only truncate 512-bit digests if the tradeoffs are acceptable.
 
 Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities clear and inspiring us, Ramtin M. Seraj leading the R&D and empowering us to innovate, and Bastian Müller improving Atree while leading the integration into Cadence. Many thanks to Supun Setunga for the very complex data migration work and more!
 
