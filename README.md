@@ -29,7 +29,7 @@ Worst case scenario of hash collisions on the entire combined digest are handled
 
 By default, Atree uses [CircleHash64f](https://github.com/fxamacker/circlehash) and BLAKE3 for a max combined digest size limit of 320 bits.  Larger digest sizes are possible by using SHA3-512, etc. instead of BLAKE3.
 
-If the max combined digest size limit is larger than desired, it can be truncated by increments of 64-bits until desired tradeoffs are reached.  However, I prefer not to truncate 256-bit cryptographic digests (out of habit unrelated to this) and only truncate 512-bit digests if the tradeoffs are acceptable.
+If the max combined digest size limit is larger than desired, it can be truncated by increments of 64-bits until desired tradeoffs are reached.  However, I generally prefer not to truncate 256-bit cryptographic digests and only truncate 512-bit digests if the tradeoffs are acceptable.  In general, if a system only requires 384 bits from SHA3-512, then I prefer to use SHA3-384 instead of truncating SHA3-512.
 
 Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities clear and inspiring us, Ramtin M. Seraj leading the R&D and empowering us to innovate, and Bastian Müller improving Atree while leading the integration into Cadence. Many thanks to Supun Setunga for the very complex data migration work and more!
 
