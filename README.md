@@ -10,7 +10,6 @@ Some of my open source work is described here.
 
 ## Design & Implementation
 
-
 <!-- ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png) -->
 
 <img src="https://github.com/user-attachments/assets/81e44838-e1ab-4282-9c88-762055f412c5" width="720" alt="fxamacker stats in atree">
@@ -19,31 +18,39 @@ __[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arr
 
 Atree segments, encodes, and stores data into chunks of relatively small size.  This enables blockchains to only hash and transmit modified chunks (aka payloads) instead of the entire array, map, or large element.
 
-Among other aspects, I invented, designed, and implemented a novel hash collision handling method.  It is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
-
-The novel hash collision handling method balances speed, security, storage size, etc.  It uses a seeded 64-bit fast hash and if there is collision on the fast hash, it uses a cryptographic digest in 64-bit segments to save space. The combined digest size can be up to 576 bits (when configured to segment entire 512-bit digest).
-
-The cryptographic hash is only computed if there is a collision on the seeded 64-bit fast hash and it is only computed once even for the worst case scenario.
-
-Worst case scenario of hash collisions on the entire combined digest are handled gracefully (not catastrophic).  This allows us to handle partial collisions more efficiently by choosing a faster 256-bit cryptographic hash instead of using a significantly slower 512-bit cryptographic hash.
-
-By default, Atree uses [CircleHash64f](https://github.com/fxamacker/circlehash) and BLAKE3 for a max combined digest size limit of 320 bits.  Larger digest sizes are possible by using SHA3-512, etc. instead of BLAKE3.
-
-If the max combined digest size limit is larger than desired, it can be truncated by increments of 64-bits until desired tradeoffs are reached.  However, I generally prefer not to truncate 256-bit cryptographic digests and only truncate 512-bit digests if the tradeoffs are acceptable.  In general, if a system only requires 384 bits from SHA3-512, then I prefer to use SHA3-384 instead of truncating SHA3-512.
+Atree deduplicates the metadata sent to Atree when feasible, and smaller data is automatically inlined into existing payloads to reduce the total number of payloads created.
 
 Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities clear and inspiring us, Ramtin M. Seraj leading the R&D and empowering us to innovate, and Bastian Müller improving Atree while leading the integration into Cadence. Many thanks to Supun Setunga for the very complex data migration work and more!
 
-## Optimizations
+### Invented Novel Collision Handler Used in Atree
 
-<p><img width="3833" height="780" alt="image" src="https://github.com/user-attachments/assets/0c845b83-66f4-4093-82e5-72756b6989ff" /></p>
+I invented, designed, and implemented a novel hash collision handling method.  It is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
+
+I designed it to allow tradeoffs to be balanced (speed, security, digest size) by using a deferred and segmented cryptographic hash digest that is gradually/partially combined with a fast non-cryptographic hash digest.
+
+The cryptographic digest is not computed or stored unless there is a collision, and only a small part of the cryptographic hash digest can be stored to resolve collisions.
+
+Collisions on a full 512-bit cryptographic hash (such as SHA3-512) would be handled gracefully (not catastrophic), and the expensive cryptographic computation or storage of the cryptoraphic digest is practically never needed on non-malicious input data.  This allows us to choose a faster and smaller hash such as BLAKE3, etc.
+
+By default, Atree uses [CircleHash64f](https://github.com/fxamacker/circlehash) together with BLAKE3 for a max combined digest size limit of 320 bits.  Larger digest sizes are possible by using SHA3-512, etc. instead of BLAKE3.
+
+<details><summary> 🔍 Expand for more details</summary>
+
+For example, the seeded fast 64-bit digest is used first and collisions on that (if it were to ever happen) is handled by a single deferred cryptographic hash computation that is stored in the fewest segments needed to resolve the collision.
+
+The worst-case scenario of a collision on the entire combined digest is handled gracefully, so this aspect allows the configurable size limit for the combined digest size to be significantly smaller than 576-bit.  For example, combined digest size can be configured to be in the range of 64..320 bits instead of 64..576 bits.
+
+Also, the max combined digest size limit can be truncated until desired tradeoffs are reached.  However, I generally prefer not to truncate 256-bit cryptographic digests and only truncate 512-bit digests if the tradeoffs are acceptable.  And if a system only requires 384 bits from SHA3-512, then I prefer to use SHA3-384 instead of truncating SHA3-512.
+
+</details>
+
+## Optimization
 
 When feasible, my optimizations simultaneously improve speed, memory, storage, and network use without negative tradeoffs.
 
-__[onflow/atree](https://github.com/onflow/atree):__  Designed and implemented [Atree Inlining & Deduplication](https://github.com/onflow/atree/releases/tag/v0.8.0) which was deployed on Sept. 4, 2024. It eliminated over 1 billion mtrie nodes (-61%) and inlined over 500 million payloads to improve memory, storage, and speed on same hardware.
+### Optimized Unfamiliar Code (11.4 hours ➡️ 4 minutes, -431 GB/op, -7.6 billion allocs/op)
 
-For example, it reduced peak RAM use by hundreds of GB on each Flow Execution Node, improved Flow transaction speed by ~7%, and also sped up other servers: "btw amazing work this atree inlining, my tinyAN bootstrap time improved like 5x".
-
-__[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed them](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
+__[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed improvements](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
 
 [PR #1944](https://github.com/onflow/flow-go/pull/1944) (Optimize MTrie Checkpoint for speed, memory, and file size):
 - __SPEED__: 171x speedup (11.4 hours to 4 minutes) in MTrie traversing/flattening/writing phase (without adding concurrency) which led to a 47x speedup in checkpointing (11.7 hours to 15 mins).
@@ -54,7 +61,15 @@ After [PR #1944](https://github.com/onflow/flow-go/pull/1944) reduced Mtrie flat
 
 Additional optimizations (add concurrency, add compression, etc.) were moved to separate issue/PR and I switched my focus to related issues like [#1747](https://github.com/onflow/flow-go/issues/1747).
 
-UPDATE: About six months later, file size grew from 53GB to 126GB and checkpointing frequency increased to every few hours (instead of about once daily) due to increased transactions and data size.  Without [PR #1944](https://github.com/onflow/flow-go/pull/1944), checkpointing would be taking over 20-30 hours each time, require more operational RAM, and slowdown the system with increased gc pressure.  More info: [issue #2286](https://github.com/onflow/flow-go/issues/2286) and [PR #2792](https://github.com/onflow/flow-go/pull/2792).
+UPDATE: About six months later, checkpoint file size grew from 53GB to 126GB and checkpointing frequency increased to every few hours (instead of about once daily) due to increased transactions and data size.  Without [PR #1944](https://github.com/onflow/flow-go/pull/1944), checkpointing would be taking over 20-30 hours each time, require more operational RAM, and slowdown the system with increased GC pressure.  More info: [issue #2286](https://github.com/onflow/flow-go/issues/2286) and [PR #2792](https://github.com/onflow/flow-go/pull/2792).
+
+### Optimized By Adding New Features (Inlining and Deduplication)
+
+__[onflow/atree](https://github.com/onflow/atree):__  Designed and implemented [Atree Inlining & Deduplication](https://github.com/onflow/atree/releases/tag/v0.8.0) which was deployed on Sept. 4, 2024. It eliminated over 1 billion mtrie nodes (-61%) and inlined over 500 million payloads to improve memory, storage, and speed on same hardware.
+
+Reducing the total number of payloads by 500+ million and slowing down the future growth rate of payloads benefits different types of servers that run payload databases, payload indexers, payload caches, and MTrie (execution state). 
+
+As one example, Atree Inlining & Deduplication reduced peak RAM use by hundreds of GB on each Flow Execution Node, improved Flow transaction speed by ~7%, and also sped up other servers: "btw amazing work this atree inlining, my tinyAN bootstrap time improved like 5x".
 
 ## Evaluations and Improvements
 
@@ -68,7 +83,7 @@ __[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created C
 
 ☝️ Using demerphq/smhasher updated to test all input sizes 0-128 bytes (SAC test will take hours longer to run).
 
-#### CircleHash64 is fast at hashing short inputs with a 64-bit seed
+#### CircleHash64f is fast at hashing short inputs with a 64-bit seed
 
 |              | CircleHash64<br/>(seeded) | XXH3<br/>(seeded) | XXH64<br/>(w/o seed) | SipHash<br/>(seeded) |
 |:-------------|:---:|:---:|:---:|:---:|
@@ -87,7 +102,7 @@ __[fxamacker/circlehash](https://github.com/fxamacker/circlehash)__: I created C
 
 CircleHash64 doesn't have big GB/s drops in throughput as input size gets larger.  Other CircleHash variants are faster for larger input sizes and a bit slower for short inputs (not yet published).
 
-## Implement IETF Internet Standards (RFC 8949 & RFC 7049)
+## 📚 Implement IETF Internet Standards (RFC 8949 & RFC 7049)
 
 __[fxamacker/cbor](https://github.com/fxamacker/cbor)__: I designed and implemented a secure CBOR codec after reading RFC 7049.  During implementation, I helped review [the draft](https://github.com/cbor-wg/CBORbis) leading to [RFC 8949](https://datatracker.ietf.org/doc/html/rfc8949).  The CBOR codec rejects malformed CBOR data and has an option to detect duplicate map keys.  It doesn't crash when decoding bad CBOR data.
 
