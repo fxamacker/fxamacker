@@ -19,7 +19,7 @@ __[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arr
 
 Atree segments, encodes, and stores data into chunks of relatively small size.  This enables blockchains to only hash and transmit modified chunks (aka payloads) instead of the entire array, map, or large element.
 
-Among other aspects, I designed and implemented a novel hash collision handling method.  It is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
+Among other aspects, I invented, designed, and implemented a novel hash collision handling method.  It is different from published methods such as [Cuckoo Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [Double Hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), [2-Choice Hashing](https://en.wikipedia.org/wiki/2-choice_hashing), etc.
 
 The novel hash collision handling method balances speed, security, storage size, etc.  It uses a seeded 64-bit fast hash and if there is collision on the fast hash, it uses a cryptographic digest in 64-bit segments to save space. The combined digest size can be up to 576 bits (when configured to segment entire 512-bit digest).
 
@@ -35,11 +35,13 @@ Acknowledgements:  Atree wouldn't exist without Dieter Shirley making priorities
 
 ## Optimizations
 
+<p><img width="3833" height="780" alt="image" src="https://github.com/user-attachments/assets/0c845b83-66f4-4093-82e5-72756b6989ff" /></p>
+
 When feasible, my optimizations simultaneously improve speed, memory, storage, and network use without negative tradeoffs.
 
 __[onflow/atree](https://github.com/onflow/atree):__  Designed and implemented [Atree Inlining & Deduplication](https://github.com/onflow/atree/releases/tag/v0.8.0) which was deployed on Sept. 4, 2024. It eliminated over 1 billion mtrie nodes (-61%) and inlined over 500 million payloads to improve memory, storage, and speed on same hardware.
 
-- For example, it reduced peak RAM use by hundreds of GB on each Flow Execution Node, improved Flow transaction speed by ~7%, and also sped up other servers: "btw amazing work this atree inlining, my tinyAN bootstrap time improved like 5x".
+For example, it reduced peak RAM use by hundreds of GB on each Flow Execution Node, improved Flow transaction speed by ~7%, and also sped up other servers: "btw amazing work this atree inlining, my tinyAN bootstrap time improved like 5x".
 
 __[onflow/flow-go](https://github.com/onflow/flow-go):__  Found optimizations by reading unfamiliar source code and [proposed them](https://github.com/onflow/flow-go/issues/1750#issuecomment-1004870851) to resolve [issue #1750](https://github.com/onflow/flow-go/issues/1750). Very grateful for Ramtin M. Seraj for opening a batch of issues and letting me tackle this one.
 
