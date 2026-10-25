@@ -14,8 +14,8 @@ Some of my open source work is described here.
 
 <!-- <img src="https://github.com/user-attachments/assets/81e44838-e1ab-4282-9c88-762055f412c5" width="720" alt="fxamacker stats in atree"> -->
 
-<img width="720" alt="fxamacker's contributions to onflow/atree, mid-2021 through 2025: 649 commits, 138,733 lines added, 75,423 lines deleted (Go, hand-coded w/o AI)" src="https://github.com/user-attachments/assets/7476ad2a-da66-49a6-ac07-2de11afcea7a#gh-light-mode-only">
-<img width="720" alt="fxamacker's contributions to onflow/atree, mid-2021 through 2025: 649 commits, 138,733 lines added, 75,423 lines deleted (Go, hand-coded w/o AI)" src="https://github.com/user-attachments/assets/8595380d-f20b-4ea0-97eb-e5cb8e2b42ad#gh-dark-mode-only">
+<img alt="fxamacker's contributions to onflow/atree, mid-2021 through 2025: 649 commits, 138,733 lines added, 75,423 lines deleted (Go, hand-coded w/o AI)" src="https://github.com/user-attachments/assets/7476ad2a-da66-49a6-ac07-2de11afcea7a#gh-light-mode-only">
+<img alt="fxamacker's contributions to onflow/atree, mid-2021 through 2025: 649 commits, 138,733 lines added, 75,423 lines deleted (Go, hand-coded w/o AI)" src="https://github.com/user-attachments/assets/156cef78-4afb-4a91-b4bc-5e06d34ce80c#gh-dark-mode-only">
 
 __[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arrays and maps.  It is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).
 
