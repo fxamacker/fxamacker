@@ -1,6 +1,6 @@
 On GitHub, I maintain or contribute to projects such as [fxamacker/cbor](https://github.com/fxamacker/cbor), [onflow/atree](https://github.com/onflow/atree), [onflow/ccf](https://github.com/onflow/ccf), [onflow/cadence](https://github.com/onflow/cadence), [onflow/flow-go](https://github.com/onflow/flow-go), etc.
 
-My first open source project was [fxamacker/cbor](https://github.com/fxamacker/cbor). It's used in projects by Arm Ltd., EdgeX&nbsp;Foundry, Flow&nbsp;Foundation, Fraunhofer&#8209;AISEC, IBM, Kubernetes, Linux&nbsp;Foundation, Microsoft, Red Hat, Tailscale, Veraison, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
+My first open source project was [fxamacker/cbor](https://github.com/fxamacker/cbor). It's used in projects by Arm Ltd., Cisco, EdgeX&nbsp;Foundry, Flow&nbsp;Foundation, Fraunhofer&#8209;AISEC, IBM, Kubernetes, Linux&nbsp;Foundation, Microsoft, Red Hat, Tailscale, Veraison, [and&nbsp;others](https://github.com/fxamacker/cbor#who-uses-fxamackercbor).
 
 `fxamacker/cbor` passed multiple confidential security assessments in 2022.  A [nonconfidential security assessment](https://github.com/veraison/go-cose/blob/v1.0.0-rc.1/reports/NCC_Microsoft-go-cose-Report_2022-05-26_v1.0.pdf) (prepared by NCC&nbsp;Group for Microsoft&nbsp;Corporation) includes a subset of `fxamacker/cbor` v2.4.0 without finding any vulnerabilities.
 
@@ -12,7 +12,10 @@ Some of my open source work is described here.
 
 <!-- ![image](https://user-images.githubusercontent.com/57072051/145697520-4dc89ec2-435b-46f1-8e2c-f9e8ba0ca1df.png) -->
 
-<img src="https://github.com/user-attachments/assets/81e44838-e1ab-4282-9c88-762055f412c5" width="720" alt="fxamacker stats in atree">
+<!-- <img src="https://github.com/user-attachments/assets/81e44838-e1ab-4282-9c88-762055f412c5" width="720" alt="fxamacker stats in atree"> -->
+
+<img width="720" alt="fxamacker's contributions to onflow/atree, mid-2021 through 2025: 649 commits, 138,733 lines added, 75,423 lines deleted (Go, hand-coded w/o AI)" src="https://github.com/user-attachments/assets/7476ad2a-da66-49a6-ac07-2de11afcea7a#gh-light-mode-only">
+<img width="720" alt="fxamacker's contributions to onflow/atree, mid-2021 through 2025: 649 commits, 138,733 lines added, 75,423 lines deleted (Go, hand-coded w/o AI)" src="https://github.com/user-attachments/assets/8595380d-f20b-4ea0-97eb-e5cb8e2b42ad#gh-dark-mode-only">
 
 __[onflow/atree](https://github.com/onflow/atree)__: Atree provides scalable arrays and maps.  It is used by [Cadence](https://github.com/onflow/cadence) in the [Flow Blockchain](https://www.onflow.org/).
 
